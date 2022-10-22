@@ -7,11 +7,21 @@ const deductAmount = () => {
 
 const placeOrder = () => {
   const promise = verifyCardModule.verifyCard();
-  promise.then(() => {
-    console.log("promise-fullfilled");
+  promise
+    .then(
+      (msg) => {
+        console.log(msg);
 
-    deductAmount();
-  });
+        deductAmount();
+      },
+
+      (err) => {
+        console.log(err);
+      }
+    )
+    .catch((err) => {
+      console.log(err);
+    });
   verifyCardModule.otherTask();
 };
 

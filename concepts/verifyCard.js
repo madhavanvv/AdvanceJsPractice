@@ -1,11 +1,15 @@
 module.exports.otherTask = () => {};
-module.exports.verifyCard = () => {
+
+// or below ,both same
+const verifyCard = () => {
   const cardPromise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      console.log("Card Verified-1");
       resolve("cardverified");
+      //reject("failed");
     }, 4000);
   });
 
   return cardPromise;
 };
+
+module.exports.verifyCard = verifyCard;
