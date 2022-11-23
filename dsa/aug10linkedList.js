@@ -28,7 +28,6 @@ class linkedList {
 
     while (curr != null) {
       let tmp = curr.next;
-
       curr.next = prev;
 
       prev = curr;
