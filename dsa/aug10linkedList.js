@@ -37,6 +37,7 @@ class linkedList {
     this.head = prev;
   }
 }
+
 const ll = new linkedList();
 ll.addAtHead(7);
 ll.addAtHead(6);
