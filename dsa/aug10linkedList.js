@@ -16,16 +16,25 @@ class linkedList {
     this.head = newNode;
   }
   display() {
-    console.log(this.head);
+    let tmp = this.head;
+    while (tmp != null) {
+      console.log(tmp.data);
+      tmp = tmp.next;
+    }
   }
   reversebyPointer() {
-    let prev = this.head;
-    let next = prev.next;
+    let prev = null;
+    let curr = this.head;
 
-    prev.next = null;
+    while (curr != null) {
+      let tmp = curr.next;
 
-    console.log(prev);
-    console.log(next);
+      curr.next = prev;
+
+      prev = curr;
+      curr = tmp;
+    }
+    this.head = prev;
   }
 }
 const ll = new linkedList();
@@ -35,5 +44,7 @@ ll.addAtHead(5);
 ll.addAtHead(4);
 ll.addAtHead(3);
 ll.addAtHead(2);
-//ll.display();
+ll.display();
 ll.reversebyPointer();
+console.log("---------------------------------------");
+ll.display();

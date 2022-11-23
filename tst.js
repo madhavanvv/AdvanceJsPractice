@@ -25,3 +25,5 @@ let url = "https://jsonplaceholder.typicode.com/todos/1";
 let response = fetch(url);
 //console.log(typeof response);
 console.log(typeof response.then);
+
+console.log(typeof response.then);
