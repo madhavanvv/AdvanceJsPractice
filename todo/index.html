@@ -23,7 +23,8 @@
         </div>
       </div>
 
-      <form action="" onsubmit="submitHandler()">
+      <!-- <form action="" onsubmit="submitHandler(event); return false"> -->
+      <form id="vv1234" action="" onsubmit="submitHandler(event)">
         <h6>ADD ITEM</h6>
         <hr />
         <input id="todotxt" class="form-control mb-3" type="text" />
@@ -32,5 +33,11 @@
       <h6>TO DO</h6>
       <hr />
     </div>
+    <div>
+      <ul id="mylist" class="container"></ul>
+    </div>
+    <button class="btn btn-secondary" onclick="randomcolor()">
+      randomcolor
+    </button>
   </body>
 </html>

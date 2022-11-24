@@ -22,18 +22,37 @@ class linkedList {
       tmp = tmp.next;
     }
   }
-  reversebyPointer() {
-    let prev = null;
-    let curr = this.head;
+  // reversebyPointer() {
+  //   let prev = null;
+  //   let curr = this.head;
 
-    while (curr != null) {
-      let tmp = curr.next;
-      curr.next = prev;
+  //   while (curr != null) {
+  //     let tmp = curr.next;
 
-      prev = curr;
-      curr = tmp;
+  //     curr.next = prev;
+
+  //     prev = curr;
+  //     curr = tmp;
+  //   }
+  //   this.head = prev;
+  // }
+
+  f(curr) {
+    //base case
+    if (curr.next == null) {
+      return curr;
     }
-    this.head = prev;
+
+    let tail = this.f(curr.next);
+
+    curr.next.next = curr;
+    curr.next = null;
+    return tail;
+  }
+
+  reversepointerLL() {
+    let tail = this.f(this.head);
+    this.head = tail;
   }
 }
 
@@ -45,6 +64,6 @@ ll.addAtHead(4);
 ll.addAtHead(3);
 ll.addAtHead(2);
 ll.display();
-ll.reversebyPointer();
+ll.reversepointerLL();
 console.log("---------------------------------------");
 ll.display();
