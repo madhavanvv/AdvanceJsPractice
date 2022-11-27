@@ -1,17 +1,49 @@
+let todoData = [];
 function submitHandler(event) {
-  console.log(event);
   event.preventDefault();
+  const val = document.getElementById("todotxt");
+  //console.log(val.value);
+  //console.log(todoData.length);
+  let tmp = {
+    sno: todoData.length + 1,
+    tododata: val.value,
+  };
+  todoData.push(tmp);
+  //console.log(todoData);
 
-  let inputData = document.getElementById("todotxt");
-
-  const todoVal = inputData.value;
-  console.log(todoVal);
-
+  let listt = `<li class="list-group-item list-group-item-danger"> S.no --- TODO</li>`;
+  todoData.forEach((data) => {
+    listt =
+      listt +
+      `<li id=${data.sno + 100} class="list-group-item list-group-item-primary 
+      
+      " > <span>${data.sno} ---${data.tododata} </span>
+      <span> <button class="btn btn-primary" >Edit</button>
+      <button id=${
+        data.sno
+      } class="btn btn-danger">Delete</button></span></li>`;
+  });
   const myul = document.getElementById("mylist");
-  const tt = `<li class="mb-2 row "> <span class ="col-4"> ${todoVal}</span> <button class="btn btn-primary col-2">Edit</button> &nbsp &nbsp <button class="col-2 btn btn-primary">Delete</button></li>`;
-  myul.innerHTML = myul.innerHTML + tt;
+  myul.innerHTML = listt;
+
+  ///handlerrs
+
+  const allDangerBtn = document.querySelectorAll(".btn-danger");
+  console.log(allDangerBtn);
+  allDangerBtn.forEach((dangerBtn) => {
+    console.log("hello delete button start..");
+    dangerBtn.addEventListener("click", (event) => {
+      let listId = parseInt(event.target.id) + 100;
+      console.log(listId);
+      //console.log("aaaaaaaaaaaa");
+      document.getElementById(listId).classList.add("myhide");
+      //document.getElementById(listId).style.display = "none";
+
+      console.log("hello delete button end..");
+    });
+  });
 }
-function randomcolor() {
-  let randomColor = Math.floor(Math.random() * 16777215).toString(16);
-  console.log(randomColor);
+
+function mynamehandle() {
+  document.getElementById("myname").style.display = "none";
 }

@@ -4,3 +4,8 @@
 form {
   margin-bottom: 26px;
 }
+
+.myhide {
+  display: none;
+  color: black;
+}

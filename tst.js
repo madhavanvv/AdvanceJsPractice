@@ -1,10 +1,3 @@
-function myOne(a) {
-  // base condition
-  if (a <= 1) {
-    return;
-  }
-  // different parameters recursive call
-  myOne(a - 1);
-  console.log(a);
-}
-myOne(8);
+//reverse the array
+
+let aa = [4, 5, 6, 7, 8, 9];
