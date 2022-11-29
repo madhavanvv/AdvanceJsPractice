@@ -1,54 +1,104 @@
 class Node {
-  constructor(data) {
-    this.data = data;
+  constructor(d) {
+    this.data = d;
     this.next = null;
   }
 }
 
-class linkedList {
+class LinkedList {
   constructor() {
     this.head = null;
   }
+
   addAtHead(data) {
-    let tmp = this.head;
-    let newNode = new Node(data);
-    newNode.next = tmp;
-    this.head = newNode;
-  }
-  display() {
-    let tmp = this.head;
-    while (tmp != null) {
-      console.log(tmp.data);
-      tmp = tmp.next;
-    }
+    let nn = new Node(data);
+    nn.next = this.head;
+    this.head = nn;
+    //console.log(nn);
   }
 
-  reverseByIterative() {
-    //two objects
+  removeAtHead() {
+    let tmp = this.head.next;
+    this.head.next = null;
+    this.head = tmp;
+  }
+
+  displayData() {
+    let curr = this.head;
+    while (curr != null) {
+      console.log(curr.data);
+      curr = curr.next;
+    }
+  }
+  addAtTail(data) {
+    let curr = this.head;
+    while (curr.next != null) {
+      curr = curr.next;
+    }
+    console.log(curr);
+    let nn = new Node(data);
+    curr.next = nn;
+  }
+  removeAtTail() {
+    let curr = this.head;
+    while (curr.next.next != null) {
+      curr = curr.next;
+    }
+    curr.next = null;
+  }
+  addAtPosition(pos, data) {
+    let curr = this.head;
+    let x = 1;
+    while (x <= pos - 1) {
+      x++;
+      curr = curr.next;
+    }
+    console.log(curr.data);
+    let tmp = curr.next;
+
+    let nn = new Node(data);
+    nn.next = tmp;
+    curr.next = nn;
+  }
+  reverseLLIterPointer() {
     let prev = null;
     let curr = this.head;
 
-    while (curr.next == null) {
+    while (curr != null) {
       let tmp = curr.next;
-
       curr.next = prev;
-
       prev = curr;
       curr = tmp;
     }
     this.head = prev;
   }
-}
 
-const ll = new linkedList();
-ll.addAtHead(7);
-ll.addAtHead(6);
+  reverse(curr) {
+    //basecase
+    if (curr.next == null) {
+      return curr;
+    }
+    //recursive
+    let tail = this.reverse(curr.next);
+
+    //selfwork
+
+    curr.next.next = curr;
+    curr.next = null;
+    return tail;
+  }
+  reverseLLrecursive() {
+    let tail = this.reverse(this.head);
+    this.head = tail;
+  }
+}
+let ll = new LinkedList();
 ll.addAtHead(5);
 ll.addAtHead(4);
 ll.addAtHead(3);
 ll.addAtHead(2);
-ll.display();
-
-console.log("---------------------------------------");
-ll.reverseByIterative();
-ll.display();
+ll.displayData();
+console.log("------------------------");
+//ll.reverseLLIterPointer();
+ll.reverseLLrecursive();
+ll.displayData();
