@@ -1,10 +1,22 @@
-function random(number) {
-  //return Math.floor(Math.random() * (number + 1));
-  return Math.random();
+function myOne() {
+  console.log("111111111111");
 }
-let tt = random(255);
 
-console.log(tt);
+function myTwo() {
+  console.log("22222222222");
+  return new Promise((res, rej) => {
+    setTimeout(() => {}, 1000);
+    res();
+  });
+}
+function myThree() {
+  console.log("333333333333");
+}
 
-btn.addEventListener("click", changeBackground);
-btn.removeEventListener("click", changeBackground);
+async function myTotal() {
+  myOne();
+  const bb = await myTwo();
+  myThree();
+}
+
+myTotal();
