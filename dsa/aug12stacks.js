@@ -1,36 +1,66 @@
-//stack
-class Node {
-  constructor(data) {
-    this.data = data;
-    this.next = null;
-  }
-}
+// //stack
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
 
-class Linkedlist {
+// class Linkedlist {
+//   constructor() {
+//     this.head = null;
+//   }
+
+//   addAtHead(d) {
+//     let nn = new Node(d);
+//     nn.next = this.head;
+//     this.head = nn;
+//   }
+//   removeatHead() {
+//     let tmp = this.head.next;
+//     this.head.next = null;
+//     this.head = tmp;
+//   }
+//   display() {
+//     console.log(this.head.data);
+//   }
+// }
+
+// class Stack {
+//   constructor() {
+//     this.ll = new Linkedlist();
+//   }
+
+//   push(d) {
+//     this.ll.addAtHead(d);
+//   }
+//   pop() {
+//     this.ll.removeatHead(d);
+//   }
+//   top() {
+//     this.ll.display();
+//   }
+// }
+
+class Stack {
+  #arr;
   constructor() {
-    this.head = null;
+    this.#arr = [];
   }
-
-  addAtHead(d) {
-    let nn = new Node(d);
-    nn.next = this.head;
-    this.head = nn;
+  push(d) {
+    this.#arr.push(d);
   }
-  removeatHead() {
-    let tmp = this.head.next;
-    this.head.next = null;
-    this.head = tmp;
+  pop(d) {
+    this.#arr.pop(d);
   }
-  display() {
-    console.log(this.head.data);
+  top() {
+    console.log(this.#arr[this.#arr.length - 1]);
   }
 }
-let ll = new Linkedlist();
-ll.addAtHead(7);
-ll.addAtHead(6);
-ll.addAtHead(5);
-ll.addAtHead(4);
-ll.addAtHead(3);
-ll.display();
-ll.removeatHead();
-ll.display();
+
+let ss = new Stack();
+ss.push(5);
+ss.top();
+ss.push(4);
+ss.push(3);
+ss.push(2);
