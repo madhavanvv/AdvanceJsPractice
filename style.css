@@ -27,6 +27,9 @@
   /* transform: rotate(45deg); */
   transform: perspective(200px) translateZ(50px);
 }
+.carousel {
+  height: 100vh;
+}
 @media screen and (min-width: 450px) {
   .maincontainer {
     flex-direction: row;
