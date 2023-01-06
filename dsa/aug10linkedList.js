@@ -1,6 +1,6 @@
 class Node {
-  constructor(d) {
-    this.data = d;
+  constructor(data) {
+    this.data = data;
     this.next = null;
   }
 }
@@ -9,96 +9,59 @@ class LinkedList {
   constructor() {
     this.head = null;
   }
-
-  addAtHead(data) {
-    let nn = new Node(data);
-    nn.next = this.head;
-    this.head = nn;
-    //console.log(nn);
+  addAtHead(d) {
+    const node = new Node(d);
+    let tmp = this.head;
+    node.next = tmp;
+    this.head = node;
   }
-
-  removeAtHead() {
-    let tmp = this.head.next;
-    this.head.next = null;
-    this.head = tmp;
-  }
-
-  displayData() {
-    let curr = this.head;
-    while (curr != null) {
-      console.log(curr.data);
-      curr = curr.next;
+  display() {
+    let tmp = this.head;
+    while (tmp.next) {
+      console.log(tmp.data);
+      tmp = tmp.next;
     }
+    console.log(tmp.data);
+    console.log("--------------------");
   }
-  addAtTail(data) {
-    let curr = this.head;
-    while (curr.next != null) {
-      curr = curr.next;
-    }
-    console.log(curr);
-    let nn = new Node(data);
-    curr.next = nn;
-  }
-  removeAtTail() {
-    let curr = this.head;
-    while (curr.next.next != null) {
-      curr = curr.next;
-    }
-    curr.next = null;
-  }
-  addAtPosition(pos, data) {
-    let curr = this.head;
-    let x = 1;
-    while (x <= pos - 1) {
-      x++;
-      curr = curr.next;
-    }
-    console.log(curr.data);
-    let tmp = curr.next;
-
-    let nn = new Node(data);
-    nn.next = tmp;
-    curr.next = nn;
-  }
-  reverseLLIterPointer() {
+  reversePointerbyIterative() {
     let prev = null;
     let curr = this.head;
-
     while (curr != null) {
       let tmp = curr.next;
       curr.next = prev;
+
       prev = curr;
       curr = tmp;
     }
     this.head = prev;
   }
 
-  reverse(curr) {
-    //basecase
+  f(curr) {
+    //base case
     if (curr.next == null) {
       return curr;
     }
-    //recursive
-    let tail = this.reverse(curr.next);
 
-    //selfwork
+    let tail = this.f(curr.next); //recursive call
 
-    curr.next.next = curr;
+    curr.next.next = curr; //selfwork
     curr.next = null;
     return tail;
   }
-  reverseLLrecursive() {
-    let tail = this.reverse(this.head);
+
+  reversebyRecursive() {
+    let tail = this.f(this.head);
     this.head = tail;
   }
 }
-let ll = new LinkedList();
+const ll = new LinkedList();
 ll.addAtHead(5);
 ll.addAtHead(4);
 ll.addAtHead(3);
 ll.addAtHead(2);
-ll.displayData();
-console.log("------------------------");
-//ll.reverseLLIterPointer();
-ll.reverseLLrecursive();
-ll.displayData();
+ll.display();
+//ll.reversePointerbyIterative();
+ll.display();
+ll.reversebyRecursive();
+ll.display();
