@@ -1,58 +1,53 @@
+console.log("linked-list");
 class Node {
   constructor(data) {
     this.data = data;
     this.next = null;
   }
 }
-
 class LinkedList {
   constructor() {
     this.head = null;
   }
+  dispalHead() {
+    console.log("------------head----------");
+    console.log(this.head.data);
+    console.log("------------head----------");
+  }
   addAtHead(d) {
-    const node = new Node(d);
+    let newNode = new Node(d);
     let tmp = this.head;
-    node.next = tmp;
-    this.head = node;
+    newNode.next = tmp;
+    this.head = newNode;
+  }
+  removeAtHead() {
+    let tmp = this.head.next;
+    this.head.next = null;
+    this.head = tmp;
+  }
+  addAtTail(d) {
+    let tmp = this.head;
+    while (tmp.next) {
+      tmp = tmp.next;
+    }
+    let node = new Node(d);
+    console.log(tmp);
+    tmp.next = node;
+  }
+  removeatTail() {
+    let tmp = this.head;
+    while (tmp.next.next) {
+      tmp = tmp.next;
+    }
+    tmp.next = null;
   }
   display() {
     let tmp = this.head;
-    while (tmp.next) {
+    while (tmp) {
       console.log(tmp.data);
       tmp = tmp.next;
     }
-    console.log(tmp.data);
-    console.log("--------------------");
-  }
-  reversePointerbyIterative() {
-    let prev = null;
-    let curr = this.head;
-    while (curr != null) {
-      let tmp = curr.next;
-      curr.next = prev;
-
-      prev = curr;
-      curr = tmp;
-    }
-    this.head = prev;
-  }
-
-  f(curr) {
-    //base case
-    if (curr.next == null) {
-      return curr;
-    }
-
-    let tail = this.f(curr.next); //recursive call
-
-    curr.next.next = curr; //selfwork
-    curr.next = null;
-    return tail;
-  }
-
-  reversebyRecursive() {
-    let tail = this.f(this.head);
-    this.head = tail;
+    console.log("---------");
   }
 }
 const ll = new LinkedList();
@@ -61,7 +56,10 @@ ll.addAtHead(4);
 ll.addAtHead(3);
 ll.addAtHead(2);
 ll.display();
-//ll.reversePointerbyIterative();
+ll.dispalHead();
+ll.addAtTail(77);
 ll.display();
-ll.reversebyRecursive();
+ll.removeAtHead();
+ll.display();
+ll.removeatTail();
 ll.display();
